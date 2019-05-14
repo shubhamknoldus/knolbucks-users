@@ -55,3 +55,4 @@ mvnw.cmd
 ### VS Code ###
 .vscode/
 
+/bin/
