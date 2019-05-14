@@ -14,9 +14,30 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 public class UserRouter {
 
 	@Bean
-	public RouterFunction<ServerResponse> routeHelloWorld(UserHandler userHandler) {
+	public RouterFunction<ServerResponse> routeUpdateUser(UserHandler userHandler) {
 
-		return RouterFunctions.route(RequestPredicates.POST("/user")
-                .and(RequestPredicates.accept(MediaType.APPLICATION_JSON)), userHandler::updateUser);
+		return RouterFunctions.route(RequestPredicates.POST("/users/{userId}").and(RequestPredicates.accept(MediaType.TEXT_PLAIN)).and(RequestPredicates.contentType(MediaType.APPLICATION_JSON)), 
+						userHandler::updateUser);
+	}
+	
+	@Bean
+	public RouterFunction<ServerResponse> routeCreateUser(UserHandler userHandler) {
+
+		return RouterFunctions.route(RequestPredicates.POST("/users/").and(RequestPredicates.accept(MediaType.TEXT_PLAIN)).and(RequestPredicates.contentType(MediaType.APPLICATION_JSON)), 
+						userHandler::createUser);
+	}
+	
+	@Bean
+	public RouterFunction<ServerResponse> routeGetUser(UserHandler userHandler) {
+
+		return RouterFunctions.route(RequestPredicates.GET("/users/{userId}").and(RequestPredicates.accept(MediaType.TEXT_PLAIN)).and(RequestPredicates.contentType(MediaType.APPLICATION_JSON)), 
+						userHandler::getUser);
+	}
+	
+	@Bean
+	public RouterFunction<ServerResponse> routeGetUsers(UserHandler userHandler) {
+
+		return RouterFunctions.route(RequestPredicates.GET("/users").and(RequestPredicates.accept(MediaType.TEXT_PLAIN)).and(RequestPredicates.contentType(MediaType.APPLICATION_JSON)), 
+						userHandler::getUsers);
 	}
 }

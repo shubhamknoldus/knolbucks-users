@@ -16,4 +16,19 @@ public class UserHandler {
 			.body(BodyInserters.fromObject("Update USer"));
 	}
 	
+	public Mono<ServerResponse> createUser(ServerRequest request) {
+		return ServerResponse.ok().contentType(MediaType.TEXT_PLAIN)
+			.body(BodyInserters.fromObject("Create USer"));
+	}
+	
+	public Mono<ServerResponse> getUser(ServerRequest request) {
+		return ServerResponse.ok().contentType(MediaType.TEXT_PLAIN)
+			.body(BodyInserters.fromObject("Get USer"));
+	}
+	
+	public Mono<ServerResponse> getUsers(ServerRequest request) {
+		return ServerResponse.ok().contentType(MediaType.TEXT_PLAIN)
+			.body(BodyInserters.fromObject("Get USers"));
+	}
+	
 }
