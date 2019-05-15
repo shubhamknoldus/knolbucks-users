@@ -13,7 +13,7 @@ import lombok.Setter;
 @Getter @Setter @NoArgsConstructor
 public class User {
 	
-	private Integer id;
+	private Long id;
 	
 	private String name;
 	
