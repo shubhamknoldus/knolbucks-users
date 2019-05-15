@@ -9,6 +9,6 @@ import reactor.core.publisher.Mono;
 public interface UserRepository extends ReactiveCrudRepository<User, ObjectId> {
 
     Flux<User> findAll();
-    Mono<User> findById(Integer userId);
+    Mono<User> findByEmployeeId(Integer employeeId);
     Mono<User> save(User user);
 }
