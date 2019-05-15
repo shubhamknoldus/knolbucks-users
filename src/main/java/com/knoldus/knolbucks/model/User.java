@@ -1,35 +1,34 @@
 package com.knoldus.knolbucks.model;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
+import java.util.Date;
+
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Date;
-
-@Document
 @Getter
+@Document
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 @Builder(toBuilder = true)
 @AllArgsConstructor
+@ToString
 public class User {
 
     @Id
-    ObjectId id;
+	ObjectId id;
 
-    String name;
+	String name;
 
-    String email;
+	String email;
 
-    String dateOfBirth;
+	String dateOfBirth;
 
-    RoleEnum role;
+	RoleEnum role;
 
-    Boolean active;
+	Boolean active;
 
-    Integer employeeId;
+	String employeeId;
+
 }
