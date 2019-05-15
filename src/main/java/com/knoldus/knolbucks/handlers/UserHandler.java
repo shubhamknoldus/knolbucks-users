@@ -12,8 +12,9 @@ import reactor.core.publisher.Mono;
 public class UserHandler {
 
 	public Mono<ServerResponse> updateUser(ServerRequest request) {
+		String userId = request.pathVariable("userId");
 		return ServerResponse.ok().contentType(MediaType.TEXT_PLAIN)
-			.body(BodyInserters.fromObject("Update USer"));
+			.body(BodyInserters.fromObject("userId"+userId));
 	}
 	
 	public Mono<ServerResponse> createUser(ServerRequest request) {

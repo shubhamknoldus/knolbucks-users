@@ -6,20 +6,12 @@ package com.knoldus.knolbucks.model;
  */
 public enum RoleEnum {
 
+	ADMIN,
 	
-	ADMIN("Admin"),
+	EMPLOYEE,
 	
-	EMPLOYEE("Employee"),
+	FINANCE,
 	
-	FINANCE("Finance"),
-	
-	HR("HR");
-	
-	private String role;
-	
-	RoleEnum(String role)
-	{
-		this.role = role;
-	}
+	HR;
 	
 }
