@@ -1,4 +1,4 @@
-package com.knoldus.knolbucks.handler;
+package com.knoldus.knolbucks.handlers;
 
 import com.knoldus.knolbucks.model.User;
 import com.knoldus.knolbucks.service.UserService;
