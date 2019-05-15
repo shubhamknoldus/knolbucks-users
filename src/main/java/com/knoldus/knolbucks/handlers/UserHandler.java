@@ -10,9 +10,11 @@ import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
+import org.springframework.web.util.UriComponentsBuilder;
 import reactor.core.publisher.Mono;
 
 import javax.inject.Inject;
+
 
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.web.reactive.function.BodyInserters.fromPublisher;
@@ -37,15 +39,16 @@ public class UserHandler {
 	}
 	
 	public Mono<ServerResponse> createUser(ServerRequest request) {
-		return ServerResponse.ok().contentType(MediaType.TEXT_PLAIN)
-			.body(BodyInserters.fromObject("Create USer"));
+		Mono<User> user = request.bodyToMono(User.class);
+		return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
+				.body(fromPublisher(user.flatMap(userService::createUser), User.class));
 	}
 	
 	public Mono<ServerResponse> getUser(ServerRequest request) {
 		final int userId = Integer.parseInt(request.pathVariable("userId"));
 		final Mono<User> user = userService.getUser(userId);
-		return userService.getUser(userId)
-				.flatMap(p -> ok().contentType(APPLICATION_JSON).body(fromPublisher(user, User.class)))
+		return user.flatMap(p -> ok().contentType(APPLICATION_JSON)
+				.body(fromPublisher(user, User.class)))
 				.switchIfEmpty(notFound().build());
 	}
 	

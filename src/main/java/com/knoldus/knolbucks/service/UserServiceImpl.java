@@ -32,6 +32,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Mono<User> createUser(User user){
-        return userRepository.save(user);
+        return Mono.fromSupplier(
+                () -> {
+                    userRepository
+                            .save(user)
+                            .subscribe();
+                    return user;
+                });
     }
 }
