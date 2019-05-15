@@ -1,4 +1,4 @@
-package com.knoldus.knolbucks.handler;
+package com.knoldus.knolbucks.handlers;
 
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
