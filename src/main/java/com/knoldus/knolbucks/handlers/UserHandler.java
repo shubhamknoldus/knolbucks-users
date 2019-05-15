@@ -31,8 +31,9 @@ public class UserHandler {
 	}
 
 	public Mono<ServerResponse> updateUser(ServerRequest request) {
-		return ok().contentType(MediaType.TEXT_PLAIN)
-			.body(BodyInserters.fromObject("Update USer"));
+		String userId = request.pathVariable("userId");
+		return ServerResponse.ok().contentType(MediaType.TEXT_PLAIN)
+			.body(BodyInserters.fromObject("userId"+userId));
 	}
 	
 	public Mono<ServerResponse> createUser(ServerRequest request) {
