@@ -25,6 +25,6 @@ public class User {
 	
 	private Boolean active;
 
-	private String employeeId;
+	private String userId;
 	
 }
