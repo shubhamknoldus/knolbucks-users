@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class DateUtils {
 
-    private static String dateFormat = "31/12/1998";
+    private static String dateFormat = "dd/MM/yyyy";
 
     public static Date formatData(String date) {
         try {
