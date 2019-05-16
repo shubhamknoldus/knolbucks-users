@@ -12,7 +12,6 @@ import lombok.experimental.FieldDefaults;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Getter
 @Document
@@ -23,7 +22,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class User {
 
     @Id
-	Integer id;
+	ObjectId _id;
 
 	String name;
 
@@ -36,6 +35,6 @@ public class User {
 
 	Boolean active;
 
-	String employeeId;
+	int employeeId;
 
 }
