@@ -21,7 +21,7 @@ public class UserRouter {
                         .POST("", accept(MediaType.APPLICATION_JSON), userHandler::createUser)
                         .GET("/{userId}", accept(MediaType.APPLICATION_JSON), userHandler::getUser)
                         .GET("", accept(MediaType.APPLICATION_JSON), userHandler::getUsers)
-                        .PUT("/{userId}", accept(MediaType.APPLICATION_JSON), userHandler::updateUser))
+                        .PUT("", accept(MediaType.APPLICATION_JSON), userHandler::updateUser))
                 .build();
     }
 }

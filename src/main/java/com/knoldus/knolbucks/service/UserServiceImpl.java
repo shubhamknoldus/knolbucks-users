@@ -11,33 +11,41 @@ import javax.inject.Inject;
 @Service
 public class UserServiceImpl implements UserService {
 
-    private final UserRepository userRepository;
+	private final UserRepository userRepository;
 
-    @Inject
-    public UserServiceImpl(UserRepository userRepository) {
+	@Inject
+	public UserServiceImpl(UserRepository userRepository) {
 
-        this.userRepository = userRepository;
-    }
+		this.userRepository = userRepository;
+	}
 
-    @Override
-    public Flux<User> getUsers(){
+	@Override
+	public Flux<User> getUsers() {
 
-        return userRepository.findAll();
-    }
+		return userRepository.findAll();
+	}
 
-    @Override
-    public Mono<User> getUser(int employeeId){
-        return userRepository.findByEmployeeId(employeeId);
-    }
+	@Override
+	public Mono<User> getUser(String employeeId) {
+		return userRepository.findByEmployeeId(employeeId);
+	}
 
-    @Override
-    public Mono<User> createUser(User user){
-        return Mono.fromSupplier(
-                () -> {
-                    userRepository
-                            .save(user)
-                            .subscribe();
-                    return user;
-                });
-    }
+	@Override
+	public Mono<User> createUser(User user) {
+		return Mono.fromSupplier(() -> {
+			userRepository.save(user).subscribe();
+			return user;
+		});
+	}
+/**
+ *  updateUser(User user) 
+ *  user object which has user information to be updated 
+ */
+	@Override
+	public Mono<User> updateUser(User user) {
+		return userRepository.findByEmployeeId(user.getEmployeeId()).doOnSuccess(findUser -> {
+			findUser.setName(user.getName());
+			userRepository.save(findUser).subscribe();
+		});
+	}
 }
